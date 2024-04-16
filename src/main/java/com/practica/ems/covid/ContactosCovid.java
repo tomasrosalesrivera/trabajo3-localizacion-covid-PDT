@@ -105,11 +105,7 @@ public class ContactosCovid {
 			}
 
 			processFileData(br);
-		} catch (IOException | EmsInvalidTypeException | EmsInvalidNumberOfDataException e) {
-			e.printStackTrace();
-		} catch (EmsDuplicateLocationException e) {
-			e.printStackTrace();
-		} catch (EmsDuplicatePersonException e) {
+		} catch (IOException | EmsInvalidTypeException | EmsInvalidNumberOfDataException | EmsDuplicateLocationException | EmsDuplicatePersonException e) {
 			e.printStackTrace();
 		} finally {
 			closeResources(fr);
