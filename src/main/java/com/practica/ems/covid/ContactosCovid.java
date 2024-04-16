@@ -107,6 +107,10 @@ public class ContactosCovid {
 			processFileData(br);
 		} catch (IOException | EmsInvalidTypeException | EmsInvalidNumberOfDataException e) {
 			e.printStackTrace();
+		} catch (EmsDuplicateLocationException e) {
+			e.printStackTrace();
+		} catch (EmsDuplicatePersonException e) {
+			e.printStackTrace();
 		} finally {
 			closeResources(fr);
 		}
@@ -119,14 +123,14 @@ public class ContactosCovid {
 		this.listaContactos = new ListaContactos();
 	}
 
-	private void processFileData(BufferedReader br) throws IOException, EmsInvalidTypeException, EmsInvalidNumberOfDataException {
+	private void processFileData(BufferedReader br) throws IOException, EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicateLocationException, EmsDuplicatePersonException {
 		String data;
 		while ((data = br.readLine()) != null) {
 			processLineData(data.trim());
 		}
 	}
 
-	private void processLineData(String data) throws EmsInvalidTypeException, EmsInvalidNumberOfDataException {
+	private void processLineData(String data) throws EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicateLocationException, EmsDuplicatePersonException {
 		String[] datas = dividirEntrada(data);
 		for (String linea : datas) {
 			String[] datos = dividirLineaData(linea);
